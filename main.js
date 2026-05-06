@@ -4,7 +4,7 @@ const { stdin, stdout } = require("process"); //standardIn E standardOut -> entr
 async function main() {
   const terminalWindow = readlinePromises.createInterface({ input: stdin, output: stdout });
 
-  const nome = await terminalWindow.question("Qual é o seu git?");
+  const nome = await terminalWindow.question("Qual é o seu usuário do github?");
 
   const response = await fetch(`https://api.github.com/users/${nome}`)
   const json = await response.json()

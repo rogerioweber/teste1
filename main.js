@@ -15,3 +15,5 @@ async function main() {
 }
 
 main();
+
+console.log("Hello world")

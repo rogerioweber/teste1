@@ -14,7 +14,7 @@ return new Promise(resolve => setTimeout(() => resolve([
 ]), 1500));
 }
 
-let caixa = 100
+let caixa = 0
 
 async function caixaFinal() {
 	let venda = 0

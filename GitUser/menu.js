@@ -50,26 +50,23 @@ async function mainMenu() {
           return;
         }
 
-        if (!usuarioExiste) {
-          console.log(`Nome: ${usuario.name} \n Login: ${usuario.login}`);
-          const desejaSalvar = await interfaceConsole.question(
-            "Caso deseje salvar o usuário digite a palavra sim  \n",
-          );
-          if (desejaSalvar.toLowerCase() === "sim") {
-            usuariosSalvos.push(usuario);
+        console.log(`Nome: ${usuario.name} \n Login: ${usuario.login}`);
+        const desejaSalvar = await interfaceConsole.question(
+          "Caso deseje salvar o usuário digite a palavra sim  \n",
+        );
+        if (desejaSalvar.toLowerCase() === "sim") {
+          usuariosSalvos.push(usuario);
 
-            await writeFile("./database.json", JSON.stringify(usuariosSalvos), {
-              encoding: "utf-8",
-            });
+          await writeFile("./database.json", JSON.stringify(usuariosSalvos), {
+            encoding: "utf-8",
+          });
 
-            console.log("Usuário salvo com sucesso!");
-            return;
-            break;
-          }
-
-          console.log("Usuário não foi salvo!");
+          console.log("Usuário salvo com sucesso!");
           return;
         }
+
+        console.log("Usuário não foi salvo!");
+        return;
 
       case "2":
         const findUserName = await interfaceConsole.question(
@@ -103,7 +100,7 @@ async function mainMenu() {
     console.log(`Ocorreu erro de ${erro}`);
   } finally {
     console.log("Encerrando o programa");
-    interfaceConsole.close()
+    interfaceConsole.close();
     console.log("Programa finalizado");
   }
 }

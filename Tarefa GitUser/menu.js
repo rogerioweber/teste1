@@ -20,7 +20,6 @@ async function mainMenu() {
 
   try {
     while (programaRodando) {
-      
       console.log(
         "=========================================================\n",
       );
@@ -60,8 +59,8 @@ async function mainMenu() {
             console.log("Esse usuário já existe nos dados");
             console.log(`Nome: ${usuario.name} \n Login: ${usuario.login}`);
             await interfaceConsole.question(
-                "Pressione enter para voltar ao menu",
-              );
+              "Pressione enter para voltar ao menu",
+            );
             break;
           }
 
@@ -78,17 +77,22 @@ async function mainMenu() {
 
             console.log("Usuário salvo com sucesso!");
             await interfaceConsole.question(
-                "Pressione enter para voltar ao menu",
-              );
+              "Pressione enter para voltar ao menu",
+            );
             break;
           }
 
           console.log("Usuário não foi salvo!");
+          await interfaceConsole.question(
+            "Pressione enter para voltar ao menu",
+          );
           break;
 
         case "2":
           await verEquipe();
-          await interfaceConsole.question("Pressione enter para voltar ao menu");
+          await interfaceConsole.question(
+            "Pressione enter para voltar ao menu",
+          );
           break;
         case "3":
           const usernameRemover = await interfaceConsole.question(
@@ -97,12 +101,12 @@ async function mainMenu() {
 
           await removerUsuarioDosDados(usernameRemover);
 
-         await interfaceConsole.question(
-                "Pressione enter para voltar ao menu"
-              );
+          await interfaceConsole.question(
+            "Pressione enter para voltar ao menu",
+          );
           break;
         case "4":
-          programaRodando = false
+          programaRodando = false;
           break;
         default: {
           console.log("Opção Inválida!");
@@ -119,4 +123,3 @@ async function mainMenu() {
 }
 
 mainMenu();
-

@@ -1,3 +1,5 @@
+//Hello World
+
 import readlinePromises from "node:readline/promises";
 import { stdin, stdout } from "process";
 

@@ -3,7 +3,7 @@ Aqui vou colocar a função ler arquivo que o professor passou
 */
 
 import { readFile } from "node:fs/promises";
-import type { usuarioGitHub } from "../types/usuarioGitHub.js";
+import { usuarioGitHub } from "../types/usuarioGitHub";
 
 async function lerArquivo(): Promise<usuarioGitHub[]> {
   try {
@@ -21,4 +21,4 @@ async function lerArquivo(): Promise<usuarioGitHub[]> {
   }
 }
 
-export { lerArquivo };;
+export { lerArquivo };

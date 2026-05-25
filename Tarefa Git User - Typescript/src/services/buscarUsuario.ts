@@ -1,7 +1,7 @@
 /*Aqui no buscar usuário tenho que colocar a parte que vai buscar no API, caso não consiga encontra o usuário ou falhe, o programa deve mostrar o erro  ao usuário
  */
 
-import type { usuarioGitHub } from "../types/usuarioGitHub.js";
+import { usuarioGitHub } from "../types/usuarioGitHub";
 
 async function buscarUsuario(username: string): Promise<usuarioGitHub | null> {
   const urlBase = "https://api.github.com/users/";
@@ -13,7 +13,7 @@ async function buscarUsuario(username: string): Promise<usuarioGitHub | null> {
       throw new Error("Deu erro em buscar usuário!");
     }
 
-    const body = await response.json();
+    const body = (await response.json()) as usuarioGitHub;
 
     return body;
   } catch (error) {

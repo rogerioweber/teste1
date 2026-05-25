@@ -1,6 +1,6 @@
 import { stdin, stdout } from "process";
 import { createInterface } from "node:readline/promises";
-import { menuController } from "./controllers/menu.js";
+import { menuController } from "./controllers/menu";
 
 async function main() {
   let rodando = true;

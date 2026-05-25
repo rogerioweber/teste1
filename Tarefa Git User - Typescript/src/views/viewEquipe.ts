@@ -1,5 +1,5 @@
-import { lerArquivo } from "../services/lerArquivo.js";
-import type { usuarioGitHub } from "../types/usuarioGitHub.js";
+import { lerArquivo } from "../services/lerArquivo";
+import { usuarioGitHub } from "../types/usuarioGitHub";
 
 async function verEquipe() {
   console.log("=========================");

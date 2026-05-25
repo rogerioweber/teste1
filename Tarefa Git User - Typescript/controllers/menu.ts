@@ -5,22 +5,15 @@
 - E sair vai encerrar o programa
 */
 
-import { stdin, stdout } from "process";
-import { createInterface } from "node:readline/promises";
+import type { Interface } from "node:readline/promises";
 import { writeFile, readFile } from "node:fs/promises";
-import { buscarUsuario } from "./services/buscarUsuario.js";
-import { lerArquivo } from "./services/lerArquivo.js";
-import { verEquipe } from "./views/viewEquipe.js";
-import { removerUsuarioDosDados } from "./services/deleteUsuario.js";
+import { buscarUsuario } from "../services/buscarUsuario.js";
+import { lerArquivo } from "../services/lerArquivo.js";
+import { verEquipe } from "../views/viewEquipe.js";
+import { removerUsuarioDosDados } from "../services/deleteUsuario.js";
 
 
-async function mainMenu() {
-  const interfaceConsole = createInterface(stdin, stdout);
-
-  let programaRodando = true;
-
-  try {
-    while (programaRodando) {
+async function menuController(interfaceConsole: Interface): Promise<boolean> {
       console.log(
         "=========================================================\n",
       );
@@ -56,7 +49,7 @@ async function mainMenu() {
               "Pressione enter para voltar ao menu",
             );
 
-            break;
+            return true;
           }
 
           const usuariosSalvos = await lerArquivo();
@@ -71,7 +64,7 @@ async function mainMenu() {
             await interfaceConsole.question(
               "Pressione enter para voltar ao menu",
             );
-            break;
+            return true;
           }
 
           console.log(`Nome: ${usuario.name} \n Login: ${usuario.login}`);
@@ -96,14 +89,14 @@ async function mainMenu() {
           await interfaceConsole.question(
             "Pressione enter para voltar ao menu",
           );
-          break;
+          return true;
 
         case "2":
           await verEquipe();
           await interfaceConsole.question(
             "Pressione enter para voltar ao menu",
           );
-          break;
+          return true;
         case "3":
           const usernameRemover = await interfaceConsole.question(
             "Digite o nome do usuário que deseja remover: \n",
@@ -114,22 +107,18 @@ async function mainMenu() {
           await interfaceConsole.question(
             "Pressione enter para voltar ao menu",
           );
-          break;
+          return true;
         case "4":
-          programaRodando = false;
-          break;
+          return false;
+
         default: {
           console.log("Opção Inválida!");
-        }
+          await interfaceConsole.question(
+            "Pressione enter para voltar");
+          return true;
       }
     }
-  } catch (erro) {
-    console.log(`Ocorreu erro de ${erro}`);
-  } finally {
-    console.log("Encerrando o programa");
-    interfaceConsole.close();
-    console.log("Programa finalizado");
+    return true
   }
-}
 
-mainMenu();
+export {menuController}

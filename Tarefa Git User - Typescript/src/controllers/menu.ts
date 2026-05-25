@@ -11,6 +11,7 @@ import { buscarUsuario } from "../services/buscarUsuario";
 import { lerArquivo } from "../services/lerArquivo";
 import { verEquipe } from "../views/viewEquipe";
 import { removerUsuarioDosDados } from "../services/deleteUsuario";
+import { salvarUsuario } from "../services/salvarUsuario";
 
 async function menuController(interfaceConsole: Interface): Promise<boolean> {
   console.log("=========================================================\n");
@@ -61,13 +62,11 @@ async function menuController(interfaceConsole: Interface): Promise<boolean> {
       if (desejaSalvar.toLowerCase() === "sim") {
         usuariosSalvos.push(usuario);
 
-        await writeFile("./database.json", JSON.stringify(usuariosSalvos), {
-          encoding: "utf-8",
-        });
+        await salvarUsuario(usuariosSalvos)
 
         console.log("Usuário salvo com sucesso!");
         await interfaceConsole.question("Pressione enter para voltar ao menu");
-        break;
+        return true;
       }
 
       console.log("Usuário não foi salvo!");

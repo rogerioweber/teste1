@@ -94,8 +94,7 @@ async function menuController(interfaceConsole: Interface): Promise<boolean> {
       await interfaceConsole.question("Pressione enter para voltar");
       return true;
     }
-  }
-  return true;
+  };
 }
 
 export { menuController };

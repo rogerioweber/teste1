@@ -2,6 +2,7 @@
  */
 
 import { usuarioGitHub } from "../types/usuarioGitHub";
+import { validarUsuarioGitHub } from "../validators/usuarioGitHubValidator";
 
 async function buscarUsuario(username: string): Promise<usuarioGitHub | null> {
   const urlBase = "https://api.github.com/users/";
@@ -13,7 +14,10 @@ async function buscarUsuario(username: string): Promise<usuarioGitHub | null> {
       throw new Error("Deu erro em buscar usuário!");
     }
 
-    const body = (await response.json()) as usuarioGitHub;
+    const body: unknown = await response.json();
+    if (!validarUsuarioGitHub(body)) {
+      throw new Error("Resposta inválida da API");
+    }
 
     return body;
   } catch (error) {

@@ -2,5 +2,5 @@ export interface usuarioGitHub {
   login: string;
   name: string | null;
   bio: string | null;
-  public_repos: string | number | null;
+  public_repos: number | null;
 }
